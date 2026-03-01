@@ -1,7 +1,7 @@
-# Quorum
+# Quorum Public Distribution
 
-This repository hosts public downloadable artifacts for **Quorum**.
+This repository is the public distribution endpoint for Quorum binaries.
 
-Quorum is an AI agent built by xudesheng with AI-assisted engineering workflows, primarily for daily personal use.
-
-Project status: **actively developed**.
+- Releases: https://github.com/xudesheng/quorum/releases
+- Latest release: https://github.com/xudesheng/quorum/releases/latest
+- Install guide: ./install.md
