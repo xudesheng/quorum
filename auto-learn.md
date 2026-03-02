@@ -1,101 +1,110 @@
-# Auto-Learn Guide
+# Auto-Learn
 
-This guide explains what Auto-Learn is for, the intended use cases, and which prompts in the TUI can reliably trigger memory save/remove behavior.
+Auto-Learn is Quorum's persistent personal memory layer for coding workflows.
+It helps the agent retain stable preferences and reusable engineering practices across sessions, so each new task starts with less re-explaining and better execution quality.
 
-## 1. Purpose of Auto-Learn
+## What It Is
 
-Auto-Learn helps the agent accumulate reusable working knowledge across sessions, so you do not need to repeat stable preferences and workflows.
+Auto-Learn stores reusable experience in your user scope:
 
-It is mainly useful for:
+- `~/.quorum/AUTO-LEARNED.md` (high-signal index, loaded at session start)
+- `~/.quorum/learned/*.md` (topic details)
 
-1. Repeated personal preferences (commit style, response format, testing habits).
-2. Reusable engineering habits across projects (debugging order, validation flow).
+This is personal memory, not project policy.
 
-## 2. Intended Use (What to Save)
+- Project rules: `AGENTS.md`, `CLAUDE.md`
+- Project knowledge: `.quorum/MEMORY.md`
+- Personal reusable experience: Auto-Learn (`~/.quorum/...`)
 
-Good candidates to save:
+## Why It Matters
 
-- Stable user preferences (for example, conventional commits).
-- Cross-project engineering habits (for example, run affected tests after edits).
-- Recurrent troubleshooting patterns that are generally applicable.
+Auto-Learn is designed to improve day-to-day coding throughput:
 
-Avoid saving:
+- Less repetition: you do not restate stable preferences every session.
+- Better consistency: the agent follows the same working style over time.
+- Faster recovery: recurring troubleshooting patterns are already available.
+- Cross-project leverage: useful habits carry from repo to repo.
 
-- One-off session context.
-- Project-private internals (private paths, internal APIs, sensitive details).
-- Unverified guesses.
+## Best-Fit Use Cases
 
-## 3. Prompts That Trigger Save in TUI
+Save these:
 
-The most reliable trigger is an explicit “remember” request.
+- Stable communication and delivery preferences
+- Reusable coding/debugging/checking workflows
+- Recurring problem-solving heuristics
+
+Do not save these:
+
+- One-off task context
+- Project-private implementation details
+- Secrets, credentials, or tokens
+- Unverified assumptions
+
+## Trigger Save in TUI (Prompts That Work)
+
+Use explicit "remember" intent.
 
 Examples:
 
-- `Remember this: always propose the minimal fix before refactor options.`
-- `Please remember my preference: use conventional commit messages.`
-- `Remember this workflow preference: run affected tests after code changes.`
+- `Remember this preference: propose minimal fix first, then optional refactor.`
+- `Remember my workflow: run affected tests after every code change.`
+- `Remember under tooling: use rg for search and uv run for Python scripts.`
 
-Topic-scoped examples:
+## Trigger Forget in TUI (Prompts That Work)
 
-- `Remember under debugging: check the first failing error before summary output.`
-- `Remember under tooling: prefer rg for search and uv run for Python scripts.`
-
-## 4. Prompts That Trigger Forget/Remove in TUI
-
-The most reliable trigger is an explicit “forget/remove this memory” request.
+Use explicit "forget/remove" intent.
 
 Examples:
 
-- `Forget my previous preference about running full test suites before every commit.`
-- `Please remove this memory: responses must always be very long.`
-- `Forget this memory: always use provider X by default.`
+- `Forget this memory: responses must always be long.`
+- `Please remove this preference: always run full test suite before commit.`
+- `Forget under debugging: restart machine first before investigation.`
 
-Topic-scoped example:
+## Recommended Prompt Templates
 
-- `Forget this in debugging: restart machine first before investigation.`
-
-## 5. Recommended Prompt Templates
-
-Save template:
+Save:
 
 ```text
 Please remember this long-term preference:
 <preference or reusable practice>
-If a similar memory already exists, update it instead of duplicating it.
+If a similar memory exists, update it instead of creating duplicates.
 ```
 
-Forget template:
+Forget:
 
 ```text
 Please forget this memory:
-<content to remove>
-If there are close duplicates, clean those up as well.
+<memory to remove>
+If close duplicates exist, remove those as well.
 ```
 
-Verification template:
+Verify:
 
 ```text
 Please summarize what you currently remember about <topic>.
 ```
 
-## 6. Use Together With `/learn` Commands
+## Operational Commands
 
-Recommended command pairing:
+Use natural-language prompts plus `/learn` commands for control and verification:
 
-- `/learn list` to inspect available topics.
-- `/learn show <topic>` to review a topic file.
-- `/learn clean` to remove stale or low-quality entries.
-- `/learn off` to temporarily disable auto-learn writes.
-- `/learn on` to re-enable it.
+- `/learn list`
+- `/learn show <topic>`
+- `/learn clean`
+- `/learn off`
+- `/learn on`
 
 Suggested flow:
 
-1. Trigger save/forget with natural language.
-2. Verify with `/learn show` or `/learn list`.
-3. Periodically run `/learn clean`.
+1. Trigger save/forget in plain language.
+2. Verify with `/learn show`.
+3. Clean periodically with `/learn clean`.
 
-## 7. Practical Tips
+## Sample Files
 
-- Keep each memory short and actionable.
-- Prefer “how to do” rules over long context narratives.
-- Do not use “remember” prompts for secrets or credentials.
+- [AUTO-LEARNED sample](./samples/AUTO-LEARNED.md)
+- [Topic sample (debugging)](./samples/learned/debugging.md)
+
+## Security Note
+
+Never ask Auto-Learn to remember secrets. If sensitive text appears in memory, remove it immediately and rotate exposed credentials.

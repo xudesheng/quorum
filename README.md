@@ -8,8 +8,8 @@ Public distribution:
 
 - Releases: https://github.com/xudesheng/quorum/releases
 - Latest release: https://github.com/xudesheng/quorum/releases/latest
-- Install guide: `./install.md`
-- Config reference: `./config.md`
+- Install guide: [install.md](./install.md)
+- Config reference: [config.md](./config.md)
 
 ## Quick Install
 
@@ -156,10 +156,15 @@ You help draft concise conventional commit messages.
 
 ### 3) Auto-Learn
 
-Auto-learn reference and design notes:
+Quick docs:
 
-- `./auto-learn.md`
-- `./auto-learn_CN.md` (Chinese)
+- English: [auto-learn.md](./auto-learn.md)
+- 中文: [auto-learn_CN.md](./auto-learn_CN.md)
+
+Samples:
+
+- [samples/AUTO-LEARNED.md](./samples/AUTO-LEARNED.md) (sample index)
+- [samples/learned/debugging.md](./samples/learned/debugging.md) (sample topic)
 
 Common setup:
 
