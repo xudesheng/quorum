@@ -48,6 +48,20 @@ default_model = "gpt-5.3-codex"
 allowed_models = ["gpt-5.3-codex"]
 mutable = false
 
+[[config_items]]
+id = "gemini-prod"
+provider = "gemini"
+description = "Gemini Tier-1 profile"
+
+[config_items.auth]
+mode = "api_key"
+env_var = "GEMINI_API_KEY"
+
+[config_items.model_policy]
+default_model = "gemini-3-flash-preview"
+allowed_models = ["gemini-3-flash-preview"]
+mutable = false
+
 [logging]
 level = "info"
 audit_buffer_size = 4096
@@ -99,7 +113,7 @@ Defines one provider/auth/model target. At least one item is required.
   - must be unique in the catalog
   - do not start with `legacy-` or `legacy_`
 - `provider` (string, required):
-  - valid: `anthropic`, `openai_responses`, `openai_chat`, `azure_openai`, `grok`
+  - valid: `anthropic`, `openai_responses`, `openai_chat`, `azure_openai`, `grok`, `gemini`
   - alias: `openai` (mapped to `openai_responses`)
 - `description` (string, optional)
 
@@ -118,6 +132,7 @@ Auth compatibility matrix:
 - `openai_chat`: `api_key` or `oauth`
 - `azure_openai`: `api_key` only
 - `grok`: `api_key` only
+- `gemini`: `api_key` only (`GEMINI_API_KEY`)
 
 #### `[config_items.endpoint]`
 

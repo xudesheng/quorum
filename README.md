@@ -2,7 +2,7 @@
 
 Quorum is a Rust-first coding agent CLI with first-class multi-provider support.
 
-It supports OpenAI/Codex, Anthropic, Grok/xAI, Azure OpenAI, and more, while still preserving provider-specific strengths instead of flattening everything into a lowest-common-denominator abstraction.
+It supports OpenAI/Codex, Anthropic, Grok/xAI, Gemini, Azure OpenAI, and more, while still preserving provider-specific strengths instead of flattening everything into a lowest-common-denominator abstraction.
 
 Public distribution:
 
@@ -30,7 +30,7 @@ Recommended config path:
 
 Full config reference: [config.md](./config.md)
 
-Example config (OpenAI + Anthropic + Grok + Azure OpenAI + Codex OAuth):
+Example config (OpenAI + Anthropic + Grok + Gemini + Azure OpenAI + Codex OAuth):
 
 ```toml
 [defaults]
@@ -77,6 +77,19 @@ allowed_models = ["grok-4-1-fast-reasoning"]
 mutable = false
 
 [[config_items]]
+id = "gemini-prod"
+provider = "gemini"
+
+[config_items.auth]
+mode = "api_key"
+env_var = "GEMINI_API_KEY"
+
+[config_items.model_policy]
+default_model = "gemini-3-flash-preview"
+allowed_models = ["gemini-3-flash-preview"]
+mutable = false
+
+[[config_items]]
 id = "azure-openai-prod"
 provider = "azure_openai"
 
@@ -111,6 +124,7 @@ mutable = false
 Notes:
 
 - Anthropic OAuth is currently restricted by Anthropic. Use `api_key` for Anthropic.
+- Gemini uses API key auth only in Quorum; configure `GEMINI_API_KEY`.
 - For API key auth, configure either `secret` or `env_var`; only one is required.
 - `defaults.config_item` is the convenience entry point for daily use.
 
