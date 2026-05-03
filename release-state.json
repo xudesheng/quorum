@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-05-03T20:54:24Z",
+  "updated_at": "2026-05-03T20:54:45Z",
   "events": [
     {
       "generation": 1,
@@ -118,6 +118,34 @@
       "generation": 1,
       "state": "draft",
       "updated_at": "2026-05-03T20:54:24Z",
+      "source_commit": "d4ec4942fb293e29b1a56ca7c1fa1afa57d49b78",
+      "source_run_url": "https://github.com/desheng-io/quorum/actions/runs/25290380133",
+      "promote_run_url": "https://github.com/desheng-io/quorum/actions/runs/25290380133",
+      "selected_channels": [
+        "github_release_assets",
+        "distribution/public-root"
+      ],
+      "channel_status": {
+        "github_release_assets": "healthy",
+        "distribution/public-root": "pending"
+      },
+      "core_verification": {
+        "macos": {
+          "codesign_verify": {
+            "status": "passed"
+          },
+          "notarization": {
+            "status": "accepted"
+          }
+        }
+      },
+      "version": "0.9.1",
+      "channel": "stable"
+    },
+    {
+      "generation": 2,
+      "state": "candidate",
+      "updated_at": "2026-05-03T20:54:45Z",
       "source_commit": "d4ec4942fb293e29b1a56ca7c1fa1afa57d49b78",
       "source_run_url": "https://github.com/desheng-io/quorum/actions/runs/25290380133",
       "promote_run_url": "https://github.com/desheng-io/quorum/actions/runs/25290380133",
